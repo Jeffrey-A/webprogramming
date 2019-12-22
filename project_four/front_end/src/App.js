@@ -52,7 +52,7 @@ class App extends React.Component {
     let promiseArray = [];
     for (let i = 0; i < inp.length; i++) {
       promiseArray.push(
-        fetch(`http://localhost:5000/tasks/${inp[i].id}`).then(response =>
+        fetch(`/tasks/${inp[i].id}`).then(response =>
           response.json()
         )
       );
@@ -61,7 +61,7 @@ class App extends React.Component {
   };
 
   fetchUserInfo = user => {
-    return fetch(`http://localhost:5000/goals/${user.id}`)
+    return fetch(`/goals/${user.id}`)
       .then(res => res.json())
       .then(goals => {
         return this.apiRequestLoop(goals).then(tasks => ({ goals, tasks }));
@@ -69,7 +69,7 @@ class App extends React.Component {
   };
 
   handleLogin = userInfo => {
-    fetch("http://localhost:5000/login", {
+    fetch("/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -100,7 +100,7 @@ class App extends React.Component {
   };
 
   registerUser = userInfo => {
-    fetch("http://localhost:5000/register", {
+    fetch("/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -113,7 +113,7 @@ class App extends React.Component {
   };
 
   createGoal = goalInfo => {
-    fetch(`http://localhost:5000/createGoal/${this.state.user.id}`, {
+    fetch(`/createGoal/${this.state.user.id}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -129,19 +129,19 @@ class App extends React.Component {
   };
 
   getGoals = () => {
-    fetch(`http://localhost:5000/goals/${this.state.user.id}`)
+    fetch(`/goals/${this.state.user.id}`)
       .then(res => res.json())
       .then(data => this.setState({ goals: data }));
   };
 
   getTasks = () => {
-    fetch("http://localhost:5000/tasks/1")
+    fetch("/tasks/1")
       .then(res => res.json())
       .then(data => this.setState({ tasks: data }));
   };
 
   updateTask = (taskId, newBody) => {
-    fetch(`http://localhost:5000/tasks/${taskId}`, {
+    fetch(`/tasks/${taskId}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -155,7 +155,7 @@ class App extends React.Component {
   };
 
   deleteGoal = goalId => {
-    fetch(`http://localhost:5000/goals/${goalId}`, {
+    fetch(`/goals/${goalId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -174,7 +174,7 @@ class App extends React.Component {
   };
 
   deleteTask = goalId => {
-    fetch(`http://localhost:5000/tasks/${goalId}`, {
+    fetch(`/tasks/${goalId}`, {
       method: "DELETE"
     })
       .then(res => console.log(res))
@@ -184,7 +184,7 @@ class App extends React.Component {
   createTask = (goalId, taskBody) => {
     alert(taskBody.name);
 
-    fetch(`http://localhost:5000/createTask/${goalId}`, {
+    fetch(`/createTask/${goalId}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -199,13 +199,13 @@ class App extends React.Component {
   };
 
   getCompletedGoals() {
-    fetch("http://localhost:5000/completed/goals/1")
+    fetch("/completed/goals/1")
       .then(res => res.json())
       .then(data => alert(data));
   }
 
   editGoal = (goalId, updatedBody) => {
-    fetch(`http://localhost:5000/goals/${goalId}`, {
+    fetch(`/goals/${goalId}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

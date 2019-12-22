@@ -27,13 +27,13 @@ class GoalLister extends React.Component {
       user = JSON.parse(user);
 
       if (!searchTerm) {
-        fetch(`http://localhost:5000/goals/${user.id}`)
+        fetch(`/goals/${user.id}`)
           .then(res => res.json())
           .then(data => {
             this.setState({ goals: data });
           });
       } else {
-        fetch(`http://localhost:5000/goals/${user.id}/${searchTerm}`)
+        fetch(`/goals/${user.id}/${searchTerm}`)
           .then(res => res.json())
           .then(data => {
             this.setState({ goals: data });

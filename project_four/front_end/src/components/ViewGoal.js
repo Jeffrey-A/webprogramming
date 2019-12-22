@@ -22,7 +22,7 @@ class ViewGoal extends React.Component {
 
   getTasks = () => {
     const { goalId } = this.props;
-    fetch(`http://localhost:5000/tasks/${goalId}`)
+    fetch(`/tasks/${goalId}`)
       .then(res => res.json())
       .then(data =>
         this.setState({
@@ -34,7 +34,7 @@ class ViewGoal extends React.Component {
   };
 
   editTask = (taskId, newBody) => {
-    fetch(`http://localhost:5000/tasks/${taskId}`, {
+    fetch(`/tasks/${taskId}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -53,7 +53,7 @@ class ViewGoal extends React.Component {
   };
 
   deleteTask = taskId => {
-    fetch(`http://localhost:5000/tasks/${taskId}`, {
+    fetch(`/tasks/${taskId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -106,7 +106,7 @@ class ViewGoal extends React.Component {
   };
 
   createTask = (goalId, taskBody) => {
-    fetch(`http://localhost:5000/createTask/${goalId}`, {
+    fetch(`/createTask/${goalId}`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -35,7 +35,7 @@ app.post("/login", (req, res) => {
       console.log(data);
       if (data.length == 1) {
         const { id, user_name, email } = data[0];
-        res.json({ id, user_name, email });
+        return res.json({ id, user_name, email });
       }
 
       res.sendStatus(401);
